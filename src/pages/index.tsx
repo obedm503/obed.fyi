@@ -158,15 +158,12 @@ export default function Index() {
 
             return (
               <div class="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg hover:scale-105 transition duration-500 ease-in-out">
-                <div class="h-36 p-4">
-                  <Show when={item.image}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      class="mx-auto h-full"
-                    />
-                  </Show>
-                </div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="block p-4 mx-auto max-h-36"
+                />
+
                 <div class="p-4">
                   <h2 class="text-xl font-semibold">
                     <a
