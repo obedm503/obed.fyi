@@ -2,7 +2,7 @@ import { createMemo, For, Show } from 'solid-js';
 import { createQuery } from 'solid-urql';
 import { Links } from '../components/links';
 
-const posts: {
+const projects: {
   title: string;
   repo?: string;
   url: string;
@@ -15,7 +15,7 @@ const posts: {
     nameWithOwner: 'obedm503/nuffread',
     url: 'https://beta.nuffread.com/',
     repo: 'https://github.com/obedm503/nuffread',
-    image: '/nuffread.webp',
+    image: '/nuffread.png',
     description: '',
   },
   {
@@ -127,7 +127,7 @@ export default function Index() {
               target="_blank"
               rel="noopener noreferrer"
               href="https://www.apexhash.com"
-              class="hover:underline"
+              class="underline"
             >
               ApexHash
             </a>{' '}
@@ -136,7 +136,7 @@ export default function Index() {
               target="_blank"
               rel="noopener noreferrer"
               href="https://beta.nuffread.com"
-              class="hover:underline"
+              class="underline"
             >
               nuffread.com
             </a>
@@ -192,19 +192,19 @@ export default function Index() {
         </h2>
 
         <div class="space-y-4 md:space-y-0 md:grid gap-4 grid-cols-3">
-          <For each={posts}>
+          <For each={projects}>
             {item => {
               const repo = () => repos()?.[item.nameWithOwner];
 
               return (
-                <div class="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg hover:scale-105 transition duration-500 ease-in-out">
+                <div class="p-4 rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg hover:scale-105 transition duration-500 ease-in-out">
                   <img
                     src={item.image}
                     alt={item.title}
-                    class="block p-4 mx-auto max-h-36"
+                    class="block mx-auto max-h-36 h-full"
                   />
 
-                  <div class="p-4">
+                  <div class="pt-4">
                     <h2 class="text-xl font-semibold">
                       <a
                         target="_blank"

@@ -31,14 +31,6 @@ export default function App() {
           class="text-center mt-8 bg-primary text-white p-8"
           style="box-sizing: border-box; clip-path: ellipse(95% 100% at 30% 100%);"
         >
-          <div class="flex justify-center">
-            {Array(5)
-              .fill('*')
-              .map(el => (
-                <span class="p-1">{el}</span>
-              ))}
-          </div>
-
           <Links />
 
           <div class="">
