@@ -119,7 +119,7 @@ export default function Index() {
             I'm <span class="">Obed Miranda</span>
           </h2>
           <h1 class="text-4xl py-2">
-            I architect and program user-facing systems.
+            I architect and implement user-facing systems.
           </h1>
           <p class="text-lg">
             Bootstrapping{' '}
