@@ -19,11 +19,7 @@ const NotFound = lazy(() => import('./pages/404'));
 export default function App() {
   return (
     <Provider value={client}>
-      <div
-        class={`md:max-w-5xl min-h-screen px-8 mx-auto ${
-          isNotFound() ? 'animate-glitch' : ''
-        }`}
-      >
+      <div class={isNotFound() ? 'animate-glitch' : ''}>
         <main>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -31,8 +27,11 @@ export default function App() {
           </Routes>
         </main>
 
-        <footer class="text-center my-4 mt-8">
-          <div class="text-light flex justify-center">
+        <footer
+          class="text-center mt-8 bg-primary text-white p-8"
+          style="box-sizing: border-box; clip-path: ellipse(95% 100% at 30% 100%);"
+        >
+          <div class="flex justify-center">
             {Array(5)
               .fill('*')
               .map(el => (
