@@ -1,12 +1,12 @@
 export function Links() {
-  const growText = ' hover:scale-125 transition duration-300 ease-in-out';
+  const growText = " hover:scale-125 transition duration-300 ease-in-out";
   return (
     <div class="flex justify-center text-4xl">
       <a
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/obedm503/"
-        class={'p-4 fill-current' + growText}
+        class={"p-4 fill-current" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ export function Links() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://www.linkedin.com/in/obed-miranda/"
-        class={'p-4 fill-current' + growText}
+        class={"p-4 fill-current" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export function Links() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://twitter.com/obed__miranda"
-        class={'p-4 fill-current' + growText}
+        class={"p-4 fill-current" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

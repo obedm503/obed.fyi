@@ -1,0 +1,35 @@
+---
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
+import MainHead from "../components/MainHead.astro";
+---
+
+<html lang="en">
+  <head>
+    <MainHead title="404 not found" />
+  </head>
+
+  <body class="font-sans bg-medium text-dark animate-glitch">
+    <div class="min-h-screen flex flex-col justify-between">
+      <nav class="bg-gradient-to-r from-primary to-violet-900 text-white p-4">
+        <a
+          href="/"
+          class="block max-w-3xl mx-auto text-2xl hover:underline hover:underline-offset-2"
+        >
+          Home
+        </a>
+      </nav>
+
+      <main>
+        <Header title="404 not found" />
+
+        <h2 class="text-center text-xl font-semibold">
+          Couldn't find what your looking for. You should consider{" "}
+          <a class="text-primary hover:underline" href="/"> going /</a>
+        </h2>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

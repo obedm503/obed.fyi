@@ -1,0 +1,82 @@
+---
+import { Footer } from "../components/footer";
+import MainHead from "../components/MainHead.astro";
+
+const list = new Intl.ListFormat("en", { format: "long" });
+
+const { content } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <MainHead title={content.title} description={content.description} />
+
+    <script>
+      const mermaid = await import("mermaid");
+
+      mermaid.initialize({ theme: "forest" });
+    </script>
+  </head>
+
+  <body>
+    <nav class="bg-gradient-to-r from-primary to-violet-900 text-white p-4">
+      <a href="/" class="block max-w-3xl mx-auto text-2xl hover:underline hover:underline-offset-2">
+        Home
+      </a>
+    </nav>
+
+    <main>
+      <div class="max-w-3xl mx-auto">
+        <h1
+          class="mt-16 mb-8 text-5xl font-medium flex justify-between items-end"
+        >
+          <a
+            href={content.url}
+            class="hover:underline hover:underline-offset-2"
+          >
+            {content.title}
+          </a>
+
+          {content.source ? (
+            <a
+              href={content.source}
+              class="text-3xl hover:underline hover:underline-offset-2"
+            >
+              Source Code
+            </a>
+          ) : null}
+        </h1>
+        <h2 class="text-xl my-4 opacity-70">{content.description}</h2>
+
+        <div class="grid grid-cols-2">
+          <div class="my-2">
+            <h3 class="font-medium uppercase mb-1">Duration</h3>
+            <p>
+              {content.duration}
+            </p>
+          </div>
+          <div class="my-2">
+            <h3 class="font-medium uppercase mb-1">Team</h3>
+            <ul>{content.team.map(member => <li>{member}</li>)}</ul>
+          </div>
+          <div class="my-2">
+            <h3 class="font-medium uppercase mb-1">My Role</h3>
+            <ul>{content.roles.map(role => <li>{role}</li>)}</ul>
+          </div>
+          <div class="my-2">
+            <h3 class="font-medium uppercase mb-1">Tech Stack</h3>
+            <ul class="grid grid-cols-3">
+              {content.stack.map(role => <li class="mx-1">{role}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <slot></slot>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
