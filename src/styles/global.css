@@ -8,20 +8,20 @@ html {
 
 .content {
   h1 {
-    @apply text-2xl font-medium uppercase my-4 max-w-3xl mx-auto;
+    @apply text-2xl font-medium uppercase my-4 max-w-3xl mx-auto px-4;
   }
   p {
-    @apply text-base my-4 max-w-3xl mx-auto;
+    @apply text-base my-4 max-w-3xl mx-auto px-4;
 
     a {
       @apply text-primary hover:underline hover:underline-offset-2;
     }
   }
   img {
-    @apply my-16;
+    @apply my-8 md:my-16;
   }
   .mermaid svg {
-    @apply min-w-full;
+    @apply min-w-full px-4 md:px-0 md:my-8;
   }
 }
 

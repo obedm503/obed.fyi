@@ -1,8 +1,7 @@
 ---
 import { Footer } from "../components/footer";
+import { ExternalLink } from "../components/link";
 import MainHead from "../components/MainHead.astro";
-
-const list = new Intl.ListFormat("en", { format: "long" });
 
 const { content } = Astro.props;
 ---
@@ -12,38 +11,66 @@ const { content } = Astro.props;
     <MainHead title={content.title} description={content.description} />
 
     <script>
-      const mermaid = await import("mermaid");
-
-      mermaid.initialize({ theme: "forest" });
+      import mermaid from "mermaid";
+      mermaid.initialize({ startOnLoad: true, theme: "forest" });
     </script>
   </head>
 
   <body>
     <nav class="bg-gradient-to-r from-primary to-violet-900 text-white p-4">
-      <a href="/" class="block max-w-3xl mx-auto text-2xl hover:underline hover:underline-offset-2">
+      <a
+        href="/"
+        class="block max-w-3xl mx-auto text-2xl hover:underline hover:underline-offset-2"
+      >
         Home
       </a>
     </nav>
 
     <main>
-      <div class="max-w-3xl mx-auto">
-        <h1
-          class="mt-16 mb-8 text-5xl font-medium flex justify-between items-end"
-        >
-          <a
+      <div class="max-w-3xl mx-auto px-4">
+        <h1 class="mt-8 md:mt-16 mb-8 md:flex justify-between items-end">
+          <ExternalLink
             href={content.url}
-            class="hover:underline hover:underline-offset-2"
+            class="flex items-center font-medium text-4xl hover:underline hover:underline-offset-2"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[1em] w-[1em] mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              ></path>
+            </svg>
             {content.title}
-          </a>
+          </ExternalLink>
 
           {content.source ? (
-            <a
+            <ExternalLink
               href={content.source}
-              class="text-3xl hover:underline hover:underline-offset-2"
+              class="flex items-center text-3xl hover:underline hover:underline-offset-2"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-[1em] w-[1em] mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width={2}
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                />
+              </svg>
               Source Code
-            </a>
+            </ExternalLink>
           ) : null}
         </h1>
         <h2 class="text-xl my-4 opacity-70">{content.description}</h2>
@@ -65,7 +92,7 @@ const { content } = Astro.props;
           </div>
           <div class="my-2">
             <h3 class="font-medium uppercase mb-1">Tech Stack</h3>
-            <ul class="grid grid-cols-3">
+            <ul class="md:grid grid-cols-3">
               {content.stack.map(role => <li class="mx-1">{role}</li>)}
             </ul>
           </div>

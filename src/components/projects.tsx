@@ -1,5 +1,6 @@
-import { For, Show, createResource } from "solid-js";
 import { createClient } from "@urql/core";
+import { createResource, For, Show } from "solid-js";
+import { ExternalLink } from "./link";
 
 type Project = {
   title: string;
@@ -66,7 +67,9 @@ const client = createClient({
   url: "https://api.github.com/graphql",
   fetchOptions() {
     return {
-      headers: { Authorization: `bearer ${import.meta.env.PUBLIC_GITHUB_TOKEN}` },
+      headers: {
+        Authorization: `bearer ${import.meta.env.PUBLIC_GITHUB_TOKEN}`,
+      },
     };
   },
 });
@@ -181,9 +184,7 @@ export function Projects() {
 
               <div class="pt-4">
                 <h2 class="text-xl font-semibold">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <ExternalLink
                     href={item.url}
                     class="hover:text-primary flex items-center hover:underline"
                   >
@@ -202,15 +203,13 @@ export function Projects() {
                       />
                     </svg>
                     {item.title}
-                  </a>
+                  </ExternalLink>
                 </h2>
 
                 <Show when={item.repo}>
                   {repoUrl => (
                     <div class="text-md flex justify-start py-1">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <ExternalLink
                         href={repoUrl}
                         class="flex items-center font-semibold text-primary hover:text-blue-600 hover:underline"
                       >
@@ -229,7 +228,7 @@ export function Projects() {
                           />
                         </svg>
                         Source
-                      </a>
+                      </ExternalLink>
                     </div>
                   )}
                 </Show>
