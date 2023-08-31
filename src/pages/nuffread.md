@@ -2,6 +2,7 @@
 layout: ../layouts/project.astro
 title: nuffread.com
 duration: Jan 2019 - Present
+image: /nuffread.png
 source: https://github.com/obedm503/nuffread
 url: https://beta.nuffread.com/
 description: |
@@ -36,8 +37,6 @@ other students. There was a need for a marketplace purpose-built and dedicated
 to facilitating exchage books. We created [nuffread.com](https://www.nuffread.com)
 to solve this specific need.
 
-<img src="/nuffread.png" alt="nuffread.com" />
-
 # Architecture
 
 [nuffread.com](https://www.nuffread.com) is an on-going project built as
@@ -57,9 +56,8 @@ server-side rendered application styled with [Tailwind CSS](https://tailwindcss.
 and deployed to [Vercel](https://vercel.com/). I also built a administrative
 backend client with the same stack.
 
-<div class="mermaid">
-{`
-graph TD
+<div class="mermaid mx-auto max-w-3xl " is:raw>
+flowchart TD
     Mixpanel(Mixpanel)
     API{Graphql API}
     API --> DB[(Heroku Postgres)]
@@ -71,7 +69,6 @@ graph TD
     Beta[beta.nuffread.com] -.-> Mixpanel
     Web[www.nuffread.com] -.-> Mixpanel
     Mobile[Mobile] -.-> Mixpanel
-`}
 </div>
 
 The backend is composed of a Graphql API built with [Apollo Server](https://www.apollographql.com/)

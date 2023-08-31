@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
 const { title = "", description = "" } = Astro.props;
 ---
@@ -17,3 +18,5 @@ const { title = "", description = "" } = Astro.props;
   rel="stylesheet"
   type="text/css"
 />
+
+<ViewTransitions />

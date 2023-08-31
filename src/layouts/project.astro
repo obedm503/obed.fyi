@@ -13,29 +13,33 @@ const { content } = Astro.props;
     <script>
       import mermaid from "mermaid";
       mermaid.initialize({ startOnLoad: true, theme: "forest" });
+      mermaid.run({
+        querySelector: '.mermaid',
+        suppressErrors: false,
+      });
     </script>
   </head>
 
   <body>
-    <nav class="bg-gradient-to-r from-primary to-violet-900 text-white p-4">
+    <nav class="bg-gradient-to-r from-primary to-violet-900 p-4 text-white">
       <a
         href="/"
-        class="block max-w-3xl mx-auto text-2xl hover:underline hover:underline-offset-2"
+        class="mx-auto block max-w-3xl text-2xl hover:underline hover:underline-offset-2"
       >
         Home
       </a>
     </nav>
 
     <main>
-      <div class="max-w-3xl mx-auto px-4">
-        <h1 class="mt-8 md:mt-16 mb-8 md:flex justify-between items-end">
+      <div class="mx-auto flex max-w-3xl flex-col gap-2 px-4">
+        <h1 class="items-end justify-between pt-6 pb-6 md:flex md:pt-8">
           <ExternalLink
             href={content.url}
-            class="flex items-center font-medium text-4xl hover:underline hover:underline-offset-2"
+            class="flex items-center text-4xl font-medium hover:underline hover:underline-offset-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-[1em] w-[1em] mr-2"
+              class="mr-2 h-[1em] w-[1em]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -50,49 +54,53 @@ const { content } = Astro.props;
             {content.title}
           </ExternalLink>
 
-          {content.source ? (
-            <ExternalLink
-              href={content.source}
-              class="flex items-center text-3xl hover:underline hover:underline-offset-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-[1em] w-[1em] mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width={2}
+          {
+            content.source ? (
+              <ExternalLink
+                href={content.source}
+                class="flex items-center text-3xl hover:underline hover:underline-offset-2"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                />
-              </svg>
-              Source Code
-            </ExternalLink>
-          ) : null}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="mr-2 h-[1em] w-[1em]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width={2}
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  />
+                </svg>
+                Source Code
+              </ExternalLink>
+            ) : null
+          }
         </h1>
-        <h2 class="text-xl my-4 opacity-70">{content.description}</h2>
+        <h2 class="text-xl opacity-70">{content.description}</h2>
+
+        <img src={content.image} alt={content.title} transition:name="image" />
 
         <div class="grid grid-cols-2">
           <div class="my-2">
-            <h3 class="font-medium uppercase mb-1">Duration</h3>
+            <h3 class="mb-1 font-medium uppercase">Duration</h3>
             <p>
               {content.duration}
             </p>
           </div>
           <div class="my-2">
-            <h3 class="font-medium uppercase mb-1">Team</h3>
+            <h3 class="mb-1 font-medium uppercase">Team</h3>
             <ul>{content.team.map(member => <li>{member}</li>)}</ul>
           </div>
           <div class="my-2">
-            <h3 class="font-medium uppercase mb-1">My Role</h3>
+            <h3 class="mb-1 font-medium uppercase">Role</h3>
             <ul>{content.roles.map(role => <li>{role}</li>)}</ul>
           </div>
           <div class="my-2">
-            <h3 class="font-medium uppercase mb-1">Tech Stack</h3>
-            <ul class="md:grid grid-cols-3">
+            <h3 class="mb-1 font-medium uppercase">Tech Stack</h3>
+            <ul class="grid-cols-3 md:grid">
               {content.stack.map(role => <li class="mx-1">{role}</li>)}
             </ul>
           </div>
@@ -100,7 +108,7 @@ const { content } = Astro.props;
       </div>
 
       <div class="content">
-        <slot></slot>
+        <slot />
       </div>
     </main>
 

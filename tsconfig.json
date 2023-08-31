@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-     // Solid specific settings
+    // Solid specific settings
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     // Enable top-level await, and other modern ESM features.
