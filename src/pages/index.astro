@@ -41,10 +41,10 @@ const projects: Project[] = [
     description: "NCAI student mobile client.",
   },
   {
-    title: "obedm.com",
-    nameWithOwner: "obedm503/obedm.com",
-    url: "https://obedm.com/",
-    repo: "https://github.com/obedm503/obedm.com",
+    title: "obed.fyi",
+    nameWithOwner: "obedm503/obed.fyi",
+    url: "https://obed.fyi/",
+    repo: "https://github.com/obedm503/obed.fyi",
     image: "/obedm.png",
     description: "",
   },
@@ -116,10 +116,12 @@ const REPOS = `
 const repos: Record<string, any> = {};
 try {
   const items = await client.query(REPOS, {}).toPromise();
-  const allRepos = [
-    ...items.data.repositoryOwner.repositories.nodes,
-    ...items.data.organization.repositories.nodes,
-  ];
+  const allRepos = items.data
+    ? [
+        ...items.data.repositoryOwner.repositories.nodes,
+        ...items.data.organization.repositories.nodes,
+      ]
+    : [];
   for (const repo of allRepos) {
     repos[repo.nameWithOwner] = repo;
   }
