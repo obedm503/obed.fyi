@@ -1,16 +1,25 @@
 ---
 import { createClient, fetchExchange } from "@urql/core";
+import { Image } from "astro:assets";
 import { Footer } from "../components/footer";
+import { ExternalLink } from "../components/link";
 import { Links } from "../components/links";
 import MainHead from "../components/MainHead.astro";
-import { ExternalLink } from "../components/link";
+
+import database from "../img/database.png";
+import linux from "../img/linux.png";
+import microwiki from "../img/microwiki.png";
+import nodegui from "../img/nodegui.png";
+import nuffread from "../img/nuffread.png";
+import obedm from "../img/obedm.png";
+import studentaccess from "../img/studentaccess.png";
 
 type Project = {
   title: string;
   repo?: string;
-  url: string;
+  url?: string;
   nameWithOwner?: string;
-  image: string;
+  image: ImageMetadata;
   description: string;
   path?: string;
 };
@@ -20,40 +29,34 @@ const spotlight: Project[] = [
     nameWithOwner: "obedm503/nuffread",
     url: "https://beta.nuffread.com/",
     repo: "https://github.com/obedm503/nuffread",
-    image: "/nuffread.png",
+    image: nuffread,
     description: "",
     path: "/nuffread",
   },
 ];
 const projects: Project[] = [
   {
-    title: "Engage for Equity Survey",
-    description: "Internal survey to evaluate community health.",
-    image: "/e2-logo.png",
-    url: "https://survey.engageforequity.org/",
+    title: "trellix-offline",
+    nameWithOwner: "obedm503/trellix-offline",
+    repo: "https://github.com/obedm503/trellix-offline",
+    image: database,
+    description:
+      "A set of experiments to compare different local-first libraries inspired by Ryan Florence's Trellix.",
   },
   {
-    title: "NCAI StudentAccess",
-    nameWithOwner: "ncai-developers/studentaccess",
-    url: "https://studentaccess.netlify.app/",
-    repo: "https://github.com/ncai-developers/studentaccess",
-    image: "/studentaccess.png",
-    description: "NCAI student mobile client.",
+    title: "solid-nodegui",
+    nameWithOwner: "obedm503/solid-nodegui",
+    url: "https://x.com/obed__miranda/status/1777773612084166738",
+    repo: "https://github.com/obedm503/solid-nodegui",
+    image: nodegui,
+    description: "",
   },
   {
     title: "obed.fyi",
     nameWithOwner: "obedm503/obed.fyi",
     url: "https://obed.fyi/",
     repo: "https://github.com/obedm503/obed.fyi",
-    image: "/obedm.png",
-    description: "",
-  },
-  {
-    title: "microwiki",
-    nameWithOwner: "obedm503/microwiki",
-    url: "",
-    repo: "https://github.com/obedm503/microwiki",
-    image: "/micro-wiki.png",
+    image: obedm,
     description: "",
   },
   {
@@ -61,8 +64,23 @@ const projects: Project[] = [
     nameWithOwner: "obedm503/vm-sim",
     url: "",
     repo: "https://github.com/obedm503/vm-sim",
-    image: "/linux-penguin.png",
+    image: linux,
     description: "",
+  },
+  {
+    title: "microwiki",
+    nameWithOwner: "obedm503/microwiki",
+    url: "",
+    repo: "https://github.com/obedm503/microwiki",
+    image: microwiki,
+    description: "",
+  },
+  {
+    title: "NCAI StudentAccess",
+    nameWithOwner: "ncai-developers/studentaccess",
+    repo: "https://github.com/ncai-developers/studentaccess",
+    image: studentaccess,
+    description: "NCAI student mobile client.",
   },
 ];
 
@@ -71,7 +89,7 @@ const client = createClient({
   fetchOptions() {
     return {
       headers: {
-        Authorization: `bearer ${import.meta.env.PUBLIC_GITHUB_TOKEN}`,
+        Authorization: `Bearer ${import.meta.env.PUBLIC_GITHUB_TOKEN}`,
       },
     };
   },
@@ -139,33 +157,9 @@ try {
     <main>
       <div class="bg-gradient-to-r from-primary to-violet-900">
         <div
-          class="lx:w-1/3 mx-auto px-8 pt-32 pb-44 text-center text-white lg:w-1/2"
+          class="lx:w-1/3 mx-auto px-8 pb-44 pt-32 text-center text-white lg:w-1/2"
         >
           <h2 class="font-mono text-2xl font-bold uppercase">Obed Miranda</h2>
-          <!-- <h1 class="text-4xl mt-2">
-            I architect and implement user-facing systems.
-          </h1> -->
-          <!-- <p class="text-md mt-2">
-            Bootstrapping{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.apexhash.com"
-              class="underline"
-            >
-              ApexHash
-            </a>{" "}
-            and{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://beta.nuffread.com"
-              class="underline"
-            >
-              nuffread.com
-            </a>
-            .
-          </p> -->
 
           <div class="pt-4 text-white">
             <Links />
@@ -214,7 +208,9 @@ try {
         <h2 class="p-4 pb-8 text-center text-2xl font-semibold">
           Proof of Work
         </h2>
-        <div class="grid-cols-9 gap-6 space-y-4 md:space-y-0 lg:grid">
+        <div
+          class="flex grid-cols-9 flex-col gap-6 space-y-4 md:space-y-0 lg:grid"
+        >
           {
             spotlight.map(item => {
               const repo = repos?.[item.nameWithOwner];
@@ -224,10 +220,10 @@ try {
                   href={item.path}
                   class="col-span-6 block overflow-hidden rounded-lg border-4 border-primary bg-white p-4 shadow-md transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg"
                 >
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    class="mx-auto block h-full max-h-36"
+                    class="mx-auto block h-full max-h-60 w-auto"
                     transition:name="image"
                   />
 
@@ -268,34 +264,39 @@ try {
 
               return (
                 <div class="col-span-3 overflow-hidden rounded-lg bg-white p-4 shadow-md transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    class="mx-auto block h-full max-h-36"
+                    class="mx-auto block h-full max-h-36 w-auto"
+                    transition:name="image"
                   />
 
                   <div class="pt-4">
                     <h2 class="text-xl font-semibold">
-                      <ExternalLink
-                        href={item.url}
-                        class="flex items-center hover:text-primary hover:underline"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="mr-2 h-[1em] w-[1em]"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
+                      {item.url ? (
+                        <ExternalLink
+                          href={item.url}
+                          class="flex items-center hover:text-primary hover:underline"
                         >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          />
-                        </svg>
-                        {item.title}
-                      </ExternalLink>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="mr-2 h-[1em] w-[1em]"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                          {item.title}
+                        </ExternalLink>
+                      ) : (
+                        item.title
+                      )}
                     </h2>
 
                     {item.repo ? (

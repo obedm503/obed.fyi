@@ -14,7 +14,7 @@ const { content } = Astro.props;
       import mermaid from "mermaid";
       mermaid.initialize({ startOnLoad: true, theme: "forest" });
       mermaid.run({
-        querySelector: '.mermaid',
+        querySelector: ".mermaid",
         suppressErrors: false,
       });
     </script>
@@ -32,9 +32,9 @@ const { content } = Astro.props;
 
     <main>
       <div class="mx-auto flex max-w-3xl flex-col gap-2 px-4">
-        <h1 class="items-end justify-between pt-6 pb-6 md:flex md:pt-8">
+        <h1 class="items-end justify-between pb-6 pt-6 md:flex md:pt-8">
           <ExternalLink
-            href={content.url}
+            href={content.site_url}
             class="flex items-center text-4xl font-medium hover:underline hover:underline-offset-2"
           >
             <svg
@@ -80,8 +80,6 @@ const { content } = Astro.props;
           }
         </h1>
         <h2 class="text-xl opacity-70">{content.description}</h2>
-
-        <img src={content.image} alt={content.title} transition:name="image" />
 
         <div class="grid grid-cols-2">
           <div class="my-2">
