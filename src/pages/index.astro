@@ -198,7 +198,7 @@ try {
     <main>
       <div class="from-primary to-secondary bg-linear-to-r">
         <div
-          class="mx-auto flex max-w-6xl items-center justify-between px-4 pt-2 md:justify-end md:pt-4 md:pb-4"
+          class="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 pt-2 md:justify-end md:pt-4 md:pb-4"
         >
           <span
             class="text-primary-foreground font-mono text-sm font-bold uppercase md:hidden"
@@ -207,7 +207,7 @@ try {
           <ThemeToggle client:load />
         </div>
         <div
-          class="text-primary-foreground mx-auto px-4 pb-6 text-center md:px-8 md:pt-4 md:pb-20 lg:w-1/2 xl:w-1/3"
+          class="text-primary-foreground relative z-10 mx-auto px-4 pb-6 text-center md:px-8 md:pt-4 md:pb-20 lg:w-1/2 xl:w-1/3"
         >
           <h2
             class="hidden font-mono text-lg font-bold uppercase md:block md:text-2xl"
@@ -221,7 +221,7 @@ try {
         </div>
         <div class="relative">
           <svg
-            class="fill-background absolute -bottom-px"
+            class="fill-background pointer-events-none absolute -bottom-px inset-x-0 z-0"
             viewBox="0 0 1428 174"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
